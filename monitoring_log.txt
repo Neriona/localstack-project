@@ -1,0 +1,109 @@
+[2026-05-07 21:26:51] === LOCALSTACK MONITORING & AUTO-HEALING STARTED ===
+[2026-05-07 21:26:51] Monitoring check started
+[2026-05-07 21:26:51] [OK] i-6d99dd... is RUNNING
+[2026-05-07 21:26:51] [OK] i-450e16... is RUNNING
+[2026-05-07 21:27:01] Monitoring check started
+[2026-05-07 21:27:01] [OK] i-6d99dd... is RUNNING
+[2026-05-07 21:27:01] [OK] i-450e16... is RUNNING
+[2026-05-07 21:27:11] Monitoring check started
+[2026-05-07 21:27:11] [OK] i-6d99dd... is RUNNING
+[2026-05-07 21:27:11] [OK] i-450e16... is RUNNING
+[2026-05-07 21:27:21] Monitoring check started
+[2026-05-07 21:27:21] [OK] i-6d99dd... is RUNNING
+[2026-05-07 21:27:21] [OK] i-450e16... is RUNNING
+[2026-05-07 21:27:31] Monitoring check started
+[2026-05-07 21:27:32] [OK] i-6d99dd... is RUNNING
+[2026-05-07 21:27:32] [OK] i-450e16... is RUNNING
+[2026-05-07 21:27:42] Monitoring check started
+[2026-05-07 21:27:42] [OK] i-6d99dd... is RUNNING
+[2026-05-07 21:27:42] [OK] i-450e16... is RUNNING
+[2026-05-07 21:27:52] Monitoring check started
+[2026-05-07 21:27:52] [OK] i-6d99dd... is RUNNING
+[2026-05-07 21:27:52] [OK] i-450e16... is RUNNING
+[2026-05-07 21:28:02] Monitoring check started
+[2026-05-07 21:28:02] [OK] i-6d99dd... is RUNNING
+[2026-05-07 21:28:02] [OK] i-450e16... is RUNNING
+[2026-05-07 21:28:12] Monitoring check started
+[2026-05-07 21:28:12] [OK] i-6d99dd... is RUNNING
+[2026-05-07 21:28:12] [OK] i-450e16... is RUNNING
+[2026-05-07 21:28:22] Monitoring check started
+[2026-05-07 21:28:22] [OK] i-6d99dd... is RUNNING
+[2026-05-07 21:28:22] [OK] i-450e16... is RUNNING
+[2026-05-07 21:28:32] Monitoring check started
+[2026-05-07 21:28:32] [OK] i-6d99dd... is RUNNING
+[2026-05-07 21:28:32] [OK] i-450e16... is RUNNING
+[2026-05-07 21:28:42] Monitoring check started
+[2026-05-07 21:28:42] [OK] i-6d99dd... is RUNNING
+[2026-05-07 21:28:42] [OK] i-450e16... is RUNNING
+[2026-05-07 21:28:52] Monitoring check started
+[2026-05-07 21:28:53] [OK] i-6d99dd... is RUNNING
+[2026-05-07 21:28:53] [OK] i-450e16... is RUNNING
+[2026-05-07 21:28:59] === LOCALSTACK - MONITORING & AUTO-HEALING (FINAL VERSION) ===
+[2026-05-07 21:28:59] Monitoring va tourner pendant 120 secondes
+[2026-05-07 21:28:59] 
+--- Monitoring Check (0s / 120s) ---
+[2026-05-07 21:28:59] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:28:59] [OK] i-450e16... → RUNNING
+[2026-05-07 21:29:07] 
+--- Monitoring Check (8s / 120s) ---
+[2026-05-07 21:29:07] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:29:07] [OK] i-450e16... → RUNNING
+[2026-05-07 21:29:15] 
+--- Monitoring Check (16s / 120s) ---
+[2026-05-07 21:29:15] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:29:15] [OK] i-450e16... → RUNNING
+[2026-05-07 21:29:23] 
+--- Monitoring Check (24s / 120s) ---
+[2026-05-07 21:29:23] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:29:23] [OK] i-450e16... → RUNNING
+[2026-05-07 21:29:31] 
+--- Monitoring Check (32s / 120s) ---
+[2026-05-07 21:29:31] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:29:31] [OK] i-450e16... → RUNNING
+[2026-05-07 21:29:39] 
+--- Monitoring Check (40s / 120s) ---
+[2026-05-07 21:29:39] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:29:39] [OK] i-450e16... → RUNNING
+[2026-05-07 21:29:48] 
+--- Monitoring Check (48s / 120s) ---
+[2026-05-07 21:29:48] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:29:48] [OK] i-450e16... → RUNNING
+[2026-05-07 21:29:56] 
+--- Monitoring Check (56s / 120s) ---
+[2026-05-07 21:29:56] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:29:56] [OK] i-450e16... → RUNNING
+[2026-05-07 21:30:04] 
+--- Monitoring Check (65s / 120s) ---
+[2026-05-07 21:30:04] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:30:04] [OK] i-450e16... → RUNNING
+[2026-05-07 21:30:12] 
+--- Monitoring Check (73s / 120s) ---
+[2026-05-07 21:30:12] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:30:12] [OK] i-450e16... → RUNNING
+[2026-05-07 21:30:20] 
+--- Monitoring Check (81s / 120s) ---
+[2026-05-07 21:30:20] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:30:20] [OK] i-450e16... → RUNNING
+[2026-05-07 21:30:28] 
+--- Monitoring Check (89s / 120s) ---
+[2026-05-07 21:30:28] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:30:28] [OK] i-450e16... → RUNNING
+[2026-05-07 21:30:36] 
+--- Monitoring Check (97s / 120s) ---
+[2026-05-07 21:30:37] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:30:37] [OK] i-450e16... → RUNNING
+[2026-05-07 21:30:45] 
+--- Monitoring Check (105s / 120s) ---
+[2026-05-07 21:30:45] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:30:45] [OK] i-450e16... → RUNNING
+[2026-05-07 21:30:53] 
+--- Monitoring Check (113s / 120s) ---
+[2026-05-07 21:30:53] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:30:53] [OK] i-450e16... → RUNNING
+[2026-05-07 21:31:01] 
+--- Monitoring Check (122s / 120s) ---
+[2026-05-07 21:31:01] [OK] i-6d99dd... → RUNNING
+[2026-05-07 21:31:01] [OK] i-450e16... → RUNNING
+[2026-05-07 21:31:01] 
+=== FIN DU MONITORING ===
+[2026-05-07 21:31:01] Monitoring terminé.

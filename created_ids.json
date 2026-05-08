@@ -1,0 +1,9 @@
+{
+  "vpc_id": "vpc-f968389f832c74faf",
+  "subnet_id": "subnet-eddce51717da60800",
+  "sg_id": "sg-fa7a49606b5d8e297",
+  "instance_ids": [
+    "i-6d99ddefd4746a5c5",
+    "i-450e16d60e3f9a20f"
+  ]
+}

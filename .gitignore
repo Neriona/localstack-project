@@ -1,0 +1,35 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.Python
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# LocalStack
+.localstack/
+localstack.log
+
+# Données sensibles
+*.key
+*.pem
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Projet
+*.log
+*.tmp
+.cache/
