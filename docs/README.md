@@ -1,4 +1,4 @@
-@"
+
 # LocalStack - Simulation de Pannes VM Cloud
 
 ## 📋 Description
@@ -323,4 +323,4 @@ Créé par:
 **Status:** ✅ Complet et Testé  
 **Version:** 1.0.0  
 **Dernière mise à jour:** 8 mai 2026
-"@ | Out-File docs/README.md -Encoding UTF8
+
