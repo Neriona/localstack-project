@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStack Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #060608;
+            --card-bg: #0d0b12;
+            --border: #231d33;
+            --mauve: #b57bee;
+            --green: #6efbba;
+            --red: #ff5e7e;
+            --gold: #f5c97a;
+            --text: #e8e0f5;
+        }
+
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'Space Mono', monospace; 
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-attachment: fixed;
+        }
+
+        .navbar { background-color: rgba(13, 11, 18, 0.9); border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); }
+        
+        /* Titre Style Syne */
+        .brand-title { font-family: 'Syne', sans-serif; font-weight: 700; letter-spacing: -1px; }
+
+        /* Stat Cards avec lueur */
+        .stat-card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--border); 
+            border-radius: 15px; 
+            padding: 20px; 
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card:hover { border-color: var(--mauve); transform: translateY(-5px); }
+        .stat-val { font-size: 2.5rem; font-weight: bold; font-family: 'Syne', sans-serif; }
+
+        /* Table Style */
+        .table-container { background: var(--card-bg); border-radius: 15px; padding: 25px; border: 1px solid var(--border); }
+        .table { color: var(--text); border-color: var(--border); }
+        
+        /* Badges Dynamiques */
+        .badge-running { background: #00ff8811; color: var(--green); border: 1px solid var(--green); }
+        .badge-stopped { background: #ffcc0011; color: var(--gold); border: 1px solid var(--gold); }
+        .badge-terminated { background: #ff3e8111; color: var(--red); border: 1px solid var(--red); }
+
+        /* Logs Panel (Nouveau) */
+        .log-panel {
+            background: #000;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            height: 200px;
+            overflow-y: auto;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: #9080b0;
+        }
+        .log-entry { margin-bottom: 5px; border-bottom: 1px solid #1a1526; padding-bottom: 2px; }
+        .log-time { color: var(--mauve); margin-right: 10px; }
+
+        /* Progress Bars */
+        .progress { background-color: #1a1526; height: 8px; border-radius: 10px; }
+        .bg-mauve { background-color: var(--mauve); }
+
+        .btn-action { border-radius: 8px; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+    <nav class="navbar mb-4 p-3 sticky-top">
+        <div class="container">
+            <span class="navbar-brand text-white brand-title">⚡ LOCALSTACK <span style="color: var(--mauve);">DASHBOARD</span></span>
+            <div class="d-flex align-items-center">
+                <div id="status-pill" class="badge bg-dark border border-success text-success me-3">● SYSTEM ONLINE</div>
+                <button onclick="location.reload()" class="btn btn-outline-light btn-sm btn-action">REFRESH</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="stat-card text-center">
+                    <small class="text-muted text-uppercase">Total Instances</small>
+                    <div class="stat-val" style="color: var(--mauve);">{{ stats.total }}</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card text-center">
+                    <small class="text-muted text-uppercase">Running</small>
+                    <div class="stat-val text-success">{{ stats.running }}</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card text-center">
+                    <small class="text-muted text-uppercase">Stopped</small>
+                    <div class="stat-val text-warning">{{ stats.stopped }}</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card text-center">
+                    <small class="text-muted text-uppercase">Terminated</small>
+                    <div class="stat-val text-danger">{{ stats.terminated }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="table-container shadow-lg">
+                    <h5 class="mb-4 brand-title">EC2 INFRASTRUCTURE CONTROL</h5>
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr class="text-muted" style="font-size: 0.7rem;">
+                                    <th>INSTANCE ID</th>
+                                    <th>STATE</th>
+                                    <th>TYPE</th>
+                                    <th class="text-end">ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for inst in instances %}
+                                <tr>
+                                    <td><code style="color: var(--mauve); background: #1a1030; padding: 4px 8px; border-radius: 5px;">{{ inst.id }}</code></td>
+                                    <td>
+                                        <span class="badge badge-{{ inst.state }}">● {{ inst.state|upper }}</span>
+                                    </td>
+                                    <td class="small text-muted">{{ inst.type }}</td>
+                                    <td class="text-end">
+                                        <div class="btn-group">
+                                            <button onclick="control('{{inst.id}}', 'start')" class="btn btn-dark btn-action border-secondary">START</button>
+                                            <button onclick="control('{{inst.id}}', 'stop')" class="btn btn-dark btn-action border-secondary mx-1">STOP</button>
+                                            <button onclick="control('{{inst.id}}', 'terminate')" class="btn btn-danger btn-action">KILL</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="stat-card mb-4">
+                    <h6 class="brand-title mb-3" style="font-size: 0.8rem;">CLUSTER HEALTH</h6>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between small mb-1">
+                            <span>Availability</span>
+                            <span class="text-success">99.9%</span>
+                        </div>
+                        <div class="progress"><div class="progress-bar bg-success" style="width: 99%"></div></div>
+                    </div>
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between small mb-1">
+                            <span>Resource Load</span>
+                            <span style="color: var(--mauve);">{{ stats.running * 20 }}%</span>
+                        </div>
+                        <div class="progress"><div class="progress-bar bg-mauve" style="width: {{ stats.running * 20 }}%"></div></div>
+                    </div>
+                </div>
+
+                <h6 class="brand-title mb-2" style="font-size: 0.8rem;">LIVE ACTIVITY LOG</h6>
+                <div class="log-panel" id="log-body">
+                    <div class="log-entry">
+                        <span class="log-time">12:00:00</span>
+                        <span>Dashboard initialized. Connected to LocalStack.</span>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Fonction réelle pour piloter les instances
+       async function control(instanceId, action) {
+        addLog(`Sending ${action.toUpperCase()} command to ${instanceId.substring(0,10)}...`, "text-warning");
+        
+        try {
+            const response = await fetch('/api/control', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ instance_id: instanceId, action: action })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                addLog(`Success: ${result.message}`, "text-success");
+                // Rafraîchir après 1.5s pour voir le changement d'état
+                setTimeout(() => location.reload(), 1500);
+            } else {
+                addLog(`Error: ${result.error}`, "text-danger");
+            }
+        } catch (error) {
+            addLog("Network Error: Could not reach the server.", "text-danger");
+        }
+    }
+
+    // Garde ta fonction addLog pour l'affichage
+       function addLog(message, colorClass = '') {
+        const logBody = document.getElementById('log-body');
+        const now = new Date().toLocaleTimeString();
+        const entry = document.createElement('div');
+        entry.className = 'log-entry';
+        entry.innerHTML = `<span class="log-time">${now}</span> <span class="${colorClass}">${message}</span>`;
+        logBody.prepend(entry);
+    }
+</script>
+</body>
+</html>

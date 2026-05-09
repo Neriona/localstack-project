@@ -1,0 +1,9 @@
+{
+  "vpc_id": "vpc-944d2a27",
+  "subnet_id": "subnet-caf41101",
+  "sg_id": "sg-59999032c5620f685",
+  "instance_ids": [
+    "i-0a6b91dbce07bfd8c",
+    "i-3fa52191b1233a420"
+  ]
+}
